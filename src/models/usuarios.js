@@ -4,8 +4,11 @@ const { Schema, model } = mongoose;
 
 const UsuariosSchema = new Schema({
     nombre: String,
+    apellido: String,
     email: String,
-    telefono: Number,
+    dni: Number,
+    fechaNac: String,
+    pass: String,
     verify: Boolean,
 });
 
@@ -15,6 +18,6 @@ UsuariosSchema.methods.toJSON = function() {
     return usuario;
 }
 
-const Usuario = model('usuarios', UsuariosSchema)
+const Usuario = model('userbillevirtual', UsuariosSchema)
 
 module.exports = Usuario;

@@ -1,10 +1,7 @@
 const express = require("express");
 const getDatosUsuarios = require("../controllers/getDatosUsuarios");
-const getUsuario = require("../controllers/getUsuario");
-const putUsuario = require("../controllers/putUsuario");
 const postEnvioEmail = require("../controllers/postEnvioEmail");
-const deleteUsuario = require("../controllers/deleteUsuario");
-const { validarCampos } = require("../middlewares/validar-campos");
+const postRegisterUser = require("../controllers/postRegisterUser");
 
 const router = express.Router();
 
@@ -12,11 +9,11 @@ const router = express.Router();
   //res.send("CONECTADO AL SERVICIO");
 //});
 
-//router.get("/datos/usuarios", validarCampos, getDatosUsuarios);
+router.get("/datos/usuarios", getDatosUsuarios);
 
 //router.get("/datos/usuarios/:id", validarCampos, getUsuario);
 
-//router.put("/datos/usuarios/:id", validarCampos, putUsuario);
+router.post("/register/user", postRegisterUser);
 
 router.post("/send-email", postEnvioEmail);
 

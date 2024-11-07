@@ -1,5 +1,4 @@
 const { request, response } = require("express");
-const Usuarios = require("../db/usuarios");
 const {dbConnection} = require('../dbConnection/connection');
 const Usuario = require('../models/usuarios')
 
@@ -18,9 +17,8 @@ const getDatosUsuarios = async(req = request, res = response) => {
       res.json({allUsuarios})
 
   } catch (error) {
-    console.log(error);
     res.status(500).json({
-      msg: "Ocurrio un ERROR",
+      msg: "Ocurrio un ERROR getDatosUsuarios",
       error
     });
   }
