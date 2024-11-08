@@ -14,6 +14,7 @@ const postRegisterUser = async (req = request, res = response) => {
       dni,
       pass,
       fechaNac,
+      verify: true
     });
 
     if (
