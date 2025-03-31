@@ -9,8 +9,8 @@ const UsuariosSchema = new Schema({
   dni: Number,
   fechaNac: String,
   pass: String,
-  avatar: { type: String, required: false },
-  saldo: { type: Number, default: 0 },
+  avatar: String,
+  saldo: Number,
   verify: Boolean,
 });
 

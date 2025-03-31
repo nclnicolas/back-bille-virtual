@@ -2,15 +2,15 @@ const { request, response } = require("express");
 const { dbConnection } = require("../dbConnection/connection");
 const Usuario = require("../models/usuarios");
 
-const putUsuarios = async (req = request, res = response) => {
+const putSaldo = async (req = request, res = response) => {
   try {
     await dbConnection();
     const { email } = req.params;
-    const { avatar } = req.body;
+    const { saldo } = req.body;
 
     const usuario = await Usuario.findOneAndUpdate(
       { email },
-      { avatar },
+      { saldo },
       { new: true }
     );
 
@@ -21,7 +21,7 @@ const putUsuarios = async (req = request, res = response) => {
     }
 
     res.status(200).json({
-      message: "Avatar actualizado",
+      message: "Saldo actualizado",
     });
   } catch (error) {
     res.status(500).json({
@@ -31,4 +31,4 @@ const putUsuarios = async (req = request, res = response) => {
   }
 };
 
-module.exports = putUsuarios;
+module.exports = putSaldo;

@@ -1,9 +1,9 @@
 const { request, response } = require("express");
 const mercadopago = require("mercadopago");
-require('dotenv').config();
+require("dotenv").config();
 
 mercadopago.configure({
-  access_token: process.env.ACCESS_TOKEN
+  access_token: process.env.ACCESS_TOKEN,
 });
 
 const postCrearPago = async (req = request, res = response) => {
@@ -20,22 +20,35 @@ const postCrearPago = async (req = request, res = response) => {
         },
       ],
       payer: {
-        email: email, // Email del usuario
+        email: "ncl.enriquez@gmail.com", // Email del usuario
       },
       payment_methods: {
-        excluded_payment_types: [{ id: "credit_card" }], // Solo transferencias bancarias
         installments: 1,
       },
       back_urls: {
-        success: "https://tuapp.com/exito",
-        failure: "https://tuapp.com/error",
+        success:
+          "https://4933-2800-810-42b-52d-7df3-30b3-b3d9-4c31.ngrok-free.app/exito",
+        failure:
+          "https://4933-2800-810-42b-52d-7df3-30b3-b3d9-4c31.ngrok-free.app/error",
       },
       auto_return: "approved",
     };
 
     const response = await mercadopago.preferences.create(preference);
-    res.json({ id: response.body.id, init_point: response.body.init_point });
+    console.log(
+      "🔍 Respuesta de Mercado Pago:",
+      JSON.stringify(response.body, null, 2)
+    );
+    res.json({
+      id: response.body.id,
+      init_point: response.body.init_point,
+      status: response.body.status,
+    });
   } catch (error) {
+    console.error(
+      "Error al crear el pago:",
+      error.response?.data || error.message
+    );
     res.status(500).json({
       message: "Error al crear el pago",
     });

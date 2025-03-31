@@ -15,6 +15,7 @@ const postRegisterUser = async (req = request, res = response) => {
       pass,
       fechaNac,
       avatar: 'https://uifaces.co/our-content/donated/6MWH9Xi_.jpg',
+      saldo: 0,
       verify: true
     });
 
